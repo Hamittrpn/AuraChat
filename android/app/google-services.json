@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "765178690474",
+    "project_id": "aura-chat-faae3",
+    "storage_bucket": "aura-chat-faae3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765178690474:android:d36f94be4844e9f32989d3",
+        "android_client_info": {
+          "package_name": "com.hamittirpan.aura_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "765178690474-035591sco8lp1q0v5dmhthrjtoh1adv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8C5x8a2EsVpAhD4y5VWkrANjenM-EB88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "765178690474-035591sco8lp1q0v5dmhthrjtoh1adv9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
