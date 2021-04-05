@@ -1,3 +1,4 @@
+import 'package:aura_chat/Screens/Welcome/landing_screen.dart';
 import 'package:aura_chat/Screens/Welcome/welcome_screen.dart';
 import 'package:aura_chat/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
               primaryColor: kPrimaryColor,
               scaffoldBackgroundColor: Colors.white,
             ),
-            home: WelcomeScreen(),
+            home: LandingScreen(),
           );
         }
         // Otherwise, show something whilst waiting for initialization to complete
