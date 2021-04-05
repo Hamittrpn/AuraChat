@@ -1,7 +1,9 @@
+import 'package:aura_chat/Models/user_model.dart';
 import 'package:aura_chat/Screens/Login/login_screen.dart';
 import 'package:aura_chat/Screens/SignUp/components/background.dart';
 import 'package:aura_chat/Screens/SignUp/components/or_divider.dart';
 import 'package:aura_chat/Screens/SignUp/components/social_icons.dart';
+import 'package:aura_chat/Services/auth_base.dart';
 import 'package:aura_chat/components/already_have_an_account_check.dart';
 import 'package:aura_chat/components/aura_button.dart';
 import 'package:aura_chat/components/rounded_input_field.dart';
@@ -13,10 +15,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class Body extends StatelessWidget {
   final Widget child;
+  final AuthBase authService;
 
   const Body({
     Key key,
     @required this.child,
+    this.authService,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -90,8 +94,7 @@ class Body extends StatelessWidget {
   }
 
   void _guestSignUp() async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    UserCredential credential = await auth.signInAnonymously();
-    print("Login Id: " + credential.user.uid.toString());
+    AuraUser _user = await authService.signInAnonymusly();
+    print("Login Id: " + _user.UserID.toString());
   }
 }
