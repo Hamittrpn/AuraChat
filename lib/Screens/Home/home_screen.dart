@@ -1,10 +1,15 @@
-import 'package:aura_chat/Services/auth_base.dart';
+import 'package:aura_chat/models/user_model.dart';
+import 'package:aura_chat/services/auth_base.dart';
+import 'package:aura_chat/services/firebase_auth_service.dart';
+import 'package:aura_chat/services/locator.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  final AuthBase authService;
+  final Function onSignOut;
+  final AuraUser user;
+  AuthBase authService = locator<FirebaseAuthService>();
 
-  HomeScreen({@required this.authService});
+  HomeScreen({@required this.onSignOut, @required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Future<bool> _signOut() async {
+  Future<bool> signOut() async {
     return await authService.signOut();
   }
 }

@@ -1,6 +1,6 @@
-import 'package:aura_chat/Screens/Login/login_screen.dart';
-import 'package:aura_chat/Screens/SignUp/signup_screen.dart';
-import 'package:aura_chat/Screens/Welcome/components/background.dart';
+import 'package:aura_chat/screens/Login/login_screen.dart';
+import 'package:aura_chat/screens/SignUp/signup_screen.dart';
+import 'package:aura_chat/screens/Welcome/components/background.dart';
 import 'package:aura_chat/components/aura_button.dart';
 import 'package:aura_chat/constants.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +49,9 @@ class Body extends StatelessWidget {
               textColor: Colors.black,
               press: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SignUpScreen();
+                  return SignUpScreen(
+                    onSignIn: () {},
+                  );
                 }));
               },
             ),

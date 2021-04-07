@@ -1,5 +1,5 @@
-import 'package:aura_chat/Screens/Login/components/background.dart';
-import 'package:aura_chat/Screens/SignUp/signup_screen.dart';
+import 'package:aura_chat/screens/Login/components/background.dart';
+import 'package:aura_chat/screens/SignUp/signup_screen.dart';
 import 'package:aura_chat/components/already_have_an_account_check.dart';
 import 'package:aura_chat/components/aura_button.dart';
 import 'package:aura_chat/components/rounded_input_field.dart';
@@ -51,7 +51,9 @@ class Body extends StatelessWidget {
             AlreadyHaveAnAccountCheck(
               press: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SignUpScreen();
+                  return SignUpScreen(
+                    onSignIn: () {},
+                  );
                 }));
               },
             )

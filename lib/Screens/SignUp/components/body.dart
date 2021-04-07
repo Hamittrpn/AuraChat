@@ -1,26 +1,26 @@
-import 'package:aura_chat/Models/user_model.dart';
-import 'package:aura_chat/Screens/Login/login_screen.dart';
-import 'package:aura_chat/Screens/SignUp/components/background.dart';
-import 'package:aura_chat/Screens/SignUp/components/or_divider.dart';
-import 'package:aura_chat/Screens/SignUp/components/social_icons.dart';
-import 'package:aura_chat/Services/auth_base.dart';
+import 'package:aura_chat/models/user_model.dart';
+import 'package:aura_chat/screens/Login/login_screen.dart';
+import 'package:aura_chat/screens/SignUp/components/background.dart';
+import 'package:aura_chat/screens/SignUp/components/or_divider.dart';
+import 'package:aura_chat/screens/SignUp/components/social_icons.dart';
+import 'package:aura_chat/services/auth_base.dart';
+import 'package:aura_chat/services/firebase_auth_service.dart';
+import 'package:aura_chat/services/locator.dart';
 import 'package:aura_chat/components/already_have_an_account_check.dart';
 import 'package:aura_chat/components/aura_button.dart';
 import 'package:aura_chat/components/rounded_input_field.dart';
 import 'package:aura_chat/components/rounded_password_field.dart';
 import 'package:aura_chat/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Body extends StatelessWidget {
   final Widget child;
-  final AuthBase authService;
+  AuthBase authService = locator<FirebaseAuthService>();
 
-  const Body({
+  Body({
     Key key,
     @required this.child,
-    this.authService,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class Body extends StatelessWidget {
                 ),
                 SocialIcon(
                   iconSrc: "lib/assets/icons/twitter.svg",
-                  press: _guestSignUp,
+                  press: _guestSignIn,
                 ),
                 SocialIcon(
                   iconSrc: "lib/assets/icons/google-plus.svg",
@@ -93,8 +93,8 @@ class Body extends StatelessWidget {
     );
   }
 
-  void _guestSignUp() async {
+  void _guestSignIn() async {
     AuraUser _user = await authService.signInAnonymusly();
-    print("Login Id: " + _user.UserID.toString());
+    print("Login Id: " + _user.userID.toString());
   }
 }

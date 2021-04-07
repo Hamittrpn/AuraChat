@@ -1,4 +1,4 @@
-import 'package:aura_chat/Screens/Welcome/components/body.dart';
+import 'package:aura_chat/screens/Welcome/components/body.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {

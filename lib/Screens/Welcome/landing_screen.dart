@@ -1,14 +1,12 @@
-import 'package:aura_chat/Models/user_model.dart';
-import 'package:aura_chat/Screens/Home/home_screen.dart';
-import 'package:aura_chat/Screens/Login/login_screen.dart';
-import 'package:aura_chat/Screens/SignUp/signup_screen.dart';
-import 'package:aura_chat/Services/auth_base.dart';
+import 'package:aura_chat/models/user_model.dart';
+import 'package:aura_chat/screens/Home/home_screen.dart';
+import 'package:aura_chat/screens/SignUp/signup_screen.dart';
+import 'package:aura_chat/services/auth_base.dart';
+import 'package:aura_chat/services/firebase_auth_service.dart';
+import 'package:aura_chat/services/locator.dart';
 import 'package:flutter/material.dart';
 
 class LandingScreen extends StatefulWidget {
-  final AuthBase authService;
-  const LandingScreen({@required this.authService});
-
   @override
   _LandingScreenState createState() => _LandingScreenState();
 }
@@ -16,18 +14,38 @@ class LandingScreen extends StatefulWidget {
 class _LandingScreenState extends State<LandingScreen> {
   AuraUser _user;
 
+  AuthBase authService = locator<FirebaseAuthService>();
+  @override
+  void initState() {
+    super.initState();
+    _checkUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_user == null) {
       return SignUpScreen(
-        authService: widget.authService,
+        onSignIn: (user) {
+          _updateUser(user);
+        },
       );
     } else {
-      return HomeScreen(authService: widget.authService);
+      return HomeScreen(
+        user: _user,
+        onSignOut: (user) {
+          _updateUser(user);
+        },
+      );
     }
   }
 
   Future<void> _checkUser() async {
-    _user = await widget.authService.currentUser();
+    _user = await authService.currentUser();
+  }
+
+  void _updateUser(AuraUser user) {
+    setState(() {
+      _user = user;
+    });
   }
 }

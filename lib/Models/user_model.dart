@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class AuraUser {
-  final String UserID;
+  final String userID;
 
-  AuraUser({@required this.UserID});
+  AuraUser({@required this.userID});
 }

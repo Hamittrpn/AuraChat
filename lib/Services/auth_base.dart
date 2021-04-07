@@ -1,4 +1,4 @@
-import 'package:aura_chat/Models/user_model.dart';
+import 'package:aura_chat/models/user_model.dart';
 
 abstract class AuthBase {
   Future<AuraUser> currentUser();

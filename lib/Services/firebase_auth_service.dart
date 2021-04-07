@@ -1,5 +1,5 @@
-import 'package:aura_chat/Models/user_model.dart';
-import 'package:aura_chat/Services/auth_base.dart';
+import 'package:aura_chat/models/user_model.dart';
+import 'package:aura_chat/services/auth_base.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthService implements AuthBase {
@@ -41,6 +41,6 @@ class FirebaseAuthService implements AuthBase {
 
   AuraUser _userFromFirebase(User user) {
     if (user == null) return null;
-    return AuraUser(UserID: user.uid);
+    return AuraUser(userID: user.uid);
   }
 }

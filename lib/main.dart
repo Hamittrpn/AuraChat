@@ -1,10 +1,11 @@
-import 'package:aura_chat/Screens/Welcome/landing_screen.dart';
-import 'package:aura_chat/Screens/Welcome/welcome_screen.dart';
+import 'package:aura_chat/screens/Welcome/landing_screen.dart';
+import 'package:aura_chat/services/locator.dart';
 import 'package:aura_chat/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  setupLocator();
   runApp(MyApp());
 }
 
@@ -43,13 +44,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-    // return MaterialApp(
-    //   title: "Aura",
-    //   debugShowCheckedModeBanner: false,
-    //   theme: ThemeData(
-    //     primaryColor: kPrimaryColor,
-    //     scaffoldBackgroundColor: Colors.white,
-    //   ),
-    //   home: WelcomeScreen(),
-    // );
