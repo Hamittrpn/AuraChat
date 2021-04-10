@@ -51,9 +51,7 @@ class Body extends StatelessWidget {
             AlreadyHaveAnAccountCheck(
               press: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SignUpScreen(
-                    onSignIn: () {},
-                  );
+                  return SignUpScreen();
                 }));
               },
             )

@@ -1,29 +1,39 @@
 import 'package:aura_chat/models/user_model.dart';
-import 'package:aura_chat/services/auth_base.dart';
-import 'package:aura_chat/services/firebase_auth_service.dart';
-import 'package:aura_chat/services/locator.dart';
+import 'package:aura_chat/viewmodels/user_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  final Function onSignOut;
   final AuraUser user;
-  AuthBase authService = locator<FirebaseAuthService>();
 
-  HomeScreen({@required this.onSignOut, @required this.user});
+  const HomeScreen({Key key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Ana Sayfa"),
+        actions: [
+          TextButton(
+            onPressed: () => _signOut(context),
+            child: Text(
+              "LogOut",
+              style: TextStyle(color: Colors.white),
+            ),
+          )
+        ],
       ),
       body: Center(
-        child: Text("Welcome"),
+        child: Text(
+          "Welcome" + user.userID.toString(),
+        ),
       ),
     );
   }
 
-  Future<bool> signOut() async {
-    return await authService.signOut();
+  Future<bool> _signOut(BuildContext context) async {
+    final _userViewModel = Provider.of<UserViewModel>(context, listen: false);
+    bool result = await _userViewModel.signOut();
+    return result;
   }
 }

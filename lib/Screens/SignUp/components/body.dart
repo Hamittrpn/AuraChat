@@ -3,20 +3,18 @@ import 'package:aura_chat/screens/Login/login_screen.dart';
 import 'package:aura_chat/screens/SignUp/components/background.dart';
 import 'package:aura_chat/screens/SignUp/components/or_divider.dart';
 import 'package:aura_chat/screens/SignUp/components/social_icons.dart';
-import 'package:aura_chat/services/auth_base.dart';
-import 'package:aura_chat/services/firebase_auth_service.dart';
-import 'package:aura_chat/services/locator.dart';
 import 'package:aura_chat/components/already_have_an_account_check.dart';
 import 'package:aura_chat/components/aura_button.dart';
 import 'package:aura_chat/components/rounded_input_field.dart';
 import 'package:aura_chat/components/rounded_password_field.dart';
 import 'package:aura_chat/constants.dart';
+import 'package:aura_chat/viewmodels/user_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class Body extends StatelessWidget {
   final Widget child;
-  AuthBase authService = locator<FirebaseAuthService>();
 
   Body({
     Key key,
@@ -79,7 +77,7 @@ class Body extends StatelessWidget {
                 ),
                 SocialIcon(
                   iconSrc: "lib/assets/icons/twitter.svg",
-                  press: _guestSignIn,
+                  press: () => _guestSignIn(context),
                 ),
                 SocialIcon(
                   iconSrc: "lib/assets/icons/google-plus.svg",
@@ -93,8 +91,10 @@ class Body extends StatelessWidget {
     );
   }
 
-  void _guestSignIn() async {
-    AuraUser _user = await authService.signInAnonymusly();
+  void _guestSignIn(BuildContext context) async {
+    final _userViewModel = Provider.of<UserViewModel>(context, listen: false);
+
+    AuraUser _user = await _userViewModel.signInAnonymusly();
     print("Login Id: " + _user.userID.toString());
   }
 }

@@ -49,9 +49,7 @@ class Body extends StatelessWidget {
               textColor: Colors.black,
               press: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SignUpScreen(
-                    onSignIn: () {},
-                  );
+                  return SignUpScreen();
                 }));
               },
             ),
