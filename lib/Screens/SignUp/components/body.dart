@@ -81,7 +81,7 @@ class Body extends StatelessWidget {
                 ),
                 SocialIcon(
                   iconSrc: "lib/assets/icons/google-plus.svg",
-                  press: () {},
+                  press: () => _signInWithGoogle(context),
                 ),
               ],
             )
@@ -96,5 +96,12 @@ class Body extends StatelessWidget {
 
     AuraUser _user = await _userViewModel.signInAnonymusly();
     print("Login Id: " + _user.userID.toString());
+  }
+
+  void _signInWithGoogle(BuildContext context) async {
+    final _userViewModel = Provider.of<UserViewModel>(context, listen: false);
+    AuraUser _user = await _userViewModel.signInWithGoogle();
+    if (_user != null)
+      print("Oturum açan user id : " + _user.userID.toString());
   }
 }

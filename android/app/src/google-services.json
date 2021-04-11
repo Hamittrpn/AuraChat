@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "765178690474-ce1mh8nk8og28e25ffk05t813thnqvon.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hamittirpan.aura_chat",
+            "certificate_hash": "8b3d0421c7ab1104d7de84ea4f200a2d333a3c45"
+          }
+        },
+        {
           "client_id": "765178690474-035591sco8lp1q0v5dmhthrjtoh1adv9.apps.googleusercontent.com",
           "client_type": 3
         }
