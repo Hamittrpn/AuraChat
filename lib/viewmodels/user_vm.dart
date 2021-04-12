@@ -79,4 +79,18 @@ class UserViewModel with ChangeNotifier implements AuthBase {
       state = ViewState.Idle;
     }
   }
+
+  @override
+  Future<AuraUser> signInWithFacebook() async {
+    try {
+      state = ViewState.Busy;
+      _user = await _userRepository.signInWithFacebook();
+      return _user;
+    } catch (e) {
+      debugPrint("ViewModel Current User Hatası : " + e.toString());
+      return null;
+    } finally {
+      state = ViewState.Idle;
+    }
+  }
 }

@@ -73,7 +73,7 @@ class Body extends StatelessWidget {
               children: [
                 SocialIcon(
                   iconSrc: "lib/assets/icons/facebook.svg",
-                  press: () {},
+                  press: () => _signInWithFacebook(context),
                 ),
                 SocialIcon(
                   iconSrc: "lib/assets/icons/twitter.svg",
@@ -101,6 +101,13 @@ class Body extends StatelessWidget {
   void _signInWithGoogle(BuildContext context) async {
     final _userViewModel = Provider.of<UserViewModel>(context, listen: false);
     AuraUser _user = await _userViewModel.signInWithGoogle();
+    if (_user != null)
+      print("Oturum açan user id : " + _user.userID.toString());
+  }
+
+  void _signInWithFacebook(BuildContext context) async {
+    final _userViewModel = Provider.of<UserViewModel>(context, listen: false);
+    AuraUser _user = await _userViewModel.signInWithFacebook();
     if (_user != null)
       print("Oturum açan user id : " + _user.userID.toString());
   }

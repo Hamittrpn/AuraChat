@@ -21,7 +21,11 @@ class FakeAuthService implements AuthBase {
 
   @override
   Future<AuraUser> signInWithGoogle() {
-    // TODO: implement signInWithGoogle
-    throw UnimplementedError();
+    return null;
+  }
+
+  @override
+  Future<AuraUser> signInWithFacebook() {
+    return null;
   }
 }
