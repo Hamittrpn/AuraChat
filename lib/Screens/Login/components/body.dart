@@ -1,3 +1,4 @@
+import 'package:aura_chat/models/user_model.dart';
 import 'package:aura_chat/screens/Login/components/background.dart';
 import 'package:aura_chat/screens/SignUp/signup_screen.dart';
 import 'package:aura_chat/components/already_have_an_account_check.dart';
@@ -5,11 +6,20 @@ import 'package:aura_chat/components/aura_button.dart';
 import 'package:aura_chat/components/rounded_input_field.dart';
 import 'package:aura_chat/components/rounded_password_field.dart';
 import 'package:aura_chat/constants.dart';
+import 'package:aura_chat/viewmodels/user_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({Key key}) : super(key: key);
+
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  String _email, _password;
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +45,19 @@ class Body extends StatelessWidget {
             ),
             RoundedInputField(
               hintText: "Your Email",
-              onChanged: (value) {},
+              onChanged: (value) {
+                _email = value;
+              },
             ),
             RoundedPasswordField(
-              onChanged: (value) {},
+              onChanged: (value) {
+                _password = value;
+              },
             ),
             AuraButton(
               text: "LOGIN",
               color: kPrimaryColor,
-              press: () {},
+              press: () => _formSubmit(context),
             ),
             SizedBox(
               height: size.height * 0.03,
@@ -59,5 +73,11 @@ class Body extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _formSubmit(BuildContext context) async {
+    final _userViewModel = Provider.of<UserViewModel>(context, listen: false);
+    AuraUser _loginUser =
+        await _userViewModel.signInWithEmail(_email, _password);
   }
 }

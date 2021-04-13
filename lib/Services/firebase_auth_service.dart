@@ -98,4 +98,28 @@ class FirebaseAuthService implements AuthBase {
     }
     return null;
   }
+
+  @override
+  Future<AuraUser> createUserWithEmail(String email, String password) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      return _userFromFirebase(userCredential.user);
+    } catch (e) {
+      print("ERROR CREATE USER WITH EMAIL" + e.toString());
+      return null;
+    }
+  }
+
+  @override
+  Future<AuraUser> signInWithEmail(String email, String password) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      return _userFromFirebase(userCredential.user);
+    } catch (e) {
+      print("ERROR SIGN IN EMAIL" + e.toString());
+      return null;
+    }
+  }
 }

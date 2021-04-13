@@ -16,17 +16,16 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Aura",
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: kPrimaryColor,
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      home: ChangeNotifierProvider<UserViewModel>(
-        create: (context) => UserViewModel(),
-        child: LandingScreen(),
-      ),
+    return ChangeNotifierProvider<UserViewModel>(
+      create: (context) => UserViewModel(),
+      child: MaterialApp(
+          title: "Aura",
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primaryColor: kPrimaryColor,
+            scaffoldBackgroundColor: Colors.white,
+          ),
+          home: LandingScreen()),
     );
   }
 }

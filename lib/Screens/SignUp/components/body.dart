@@ -13,13 +13,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   final Widget child;
 
   Body({
     Key key,
     @required this.child,
   }) : super(key: key);
+
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  String _email, _password;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -42,14 +50,18 @@ class Body extends StatelessWidget {
             ),
             RoundedInputField(
               hintText: "Your Email",
-              onChanged: (value) {},
+              onChanged: (value) {
+                _email = value;
+              },
             ),
             RoundedPasswordField(
-              onChanged: (value) {},
+              onChanged: (value) {
+                _password = value;
+              },
             ),
             AuraButton(
               text: "SIGN UP",
-              press: () {},
+              press: () => _formSubmit(context),
             ),
             SizedBox(
               height: size.height * 0.03,
@@ -110,5 +122,11 @@ class Body extends StatelessWidget {
     AuraUser _user = await _userViewModel.signInWithFacebook();
     if (_user != null)
       print("Oturum açan user id : " + _user.userID.toString());
+  }
+
+  _formSubmit(BuildContext context) async {
+    final _userViewModel = Provider.of<UserViewModel>(context,listen: false);
+    AuraUser _loginUser =
+        await _userViewModel.createUserWithEmail(_email, _password);
   }
 }

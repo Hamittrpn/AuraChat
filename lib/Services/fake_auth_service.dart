@@ -28,4 +28,16 @@ class FakeAuthService implements AuthBase {
   Future<AuraUser> signInWithFacebook() {
     return null;
   }
+
+  @override
+  Future<AuraUser> createUserWithEmail(String email, String password) {
+    // TODO: implement createUserWithEmail
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<AuraUser> signInWithEmail(String email, String password) {
+    // TODO: implement signInWithEmail
+    throw UnimplementedError();
+  }
 }
