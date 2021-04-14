@@ -1,13 +1,25 @@
 import 'package:aura_chat/screens/SignUp/components/body.dart';
+import 'package:aura_chat/viewmodels/user_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _userViewModel = Provider.of<UserViewModel>(context);
+
+    if (_userViewModel.user != null) {
+      Navigator.of(context).pop();
+    }
+
     return Scaffold(
-      body: Body(
-        child: Column(),
-      ),
+      body: _userViewModel.state == ViewState.Idle
+          ? Body(
+              child: Column(),
+            )
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
     );
   }
 }

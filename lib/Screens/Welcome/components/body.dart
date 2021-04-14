@@ -48,7 +48,7 @@ class Body extends StatelessWidget {
               color: kPrimaryLightColor,
               textColor: Colors.black,
               press: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                Navigator.push(context, MaterialPageRoute(fullscreenDialog: true, builder: (context) {
                   return SignUpScreen();
                 }));
               },

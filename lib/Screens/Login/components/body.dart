@@ -64,9 +64,13 @@ class _BodyState extends State<Body> {
             ),
             AlreadyHaveAnAccountCheck(
               press: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SignUpScreen();
-                }));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        fullscreenDialog: true,
+                        builder: (context) {
+                          return SignUpScreen();
+                        }));
               },
             )
           ],
