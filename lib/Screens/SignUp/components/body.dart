@@ -9,6 +9,7 @@ import 'package:aura_chat/components/aura_button.dart';
 import 'package:aura_chat/components/rounded_input_field.dart';
 import 'package:aura_chat/components/rounded_password_field.dart';
 import 'package:aura_chat/constants.dart';
+import 'package:aura_chat/validations/signup_validation.dart';
 import 'package:aura_chat/viewmodels/user_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,6 +33,8 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final _validationService = Provider.of<SignupValidation>(context);
+
     return Background(
       child: SingleChildScrollView(
         child: Column(
@@ -50,19 +53,28 @@ class _BodyState extends State<Body> {
               height: size.height * 0.35,
             ),
             RoundedInputField(
+              errorText: _validationService.email.error,
               hintText: "Your Email",
               onChanged: (value) {
+                _validationService.checkValidEmail(value);
                 _email = value;
               },
             ),
             RoundedPasswordField(
+              errorText: _validationService.password.error,
               onChanged: (value) {
+                _validationService.checkValidPassword(value);
                 _password = value;
               },
             ),
             AuraButton(
               text: "SIGN UP",
-              press: () => _formSubmit(context),
+              color: (!_validationService.isValid)
+                  ? Colors.grey[400]
+                  : kPrimaryColor,
+              press: (!_validationService.isValid)
+                  ? null
+                  : () => _formSubmit(context),
             ),
             SizedBox(
               height: size.height * 0.03,
@@ -125,9 +137,8 @@ class _BodyState extends State<Body> {
       print("Oturum açan user id : " + _user.userID.toString());
   }
 
-  _formSubmit(BuildContext context) async {
+  void _formSubmit(BuildContext context) async {
     final _userViewModel = Provider.of<UserViewModel>(context, listen: false);
-    AuraUser _loginUser =
-        await _userViewModel.createUserWithEmail(_email, _password);
+    await _userViewModel.createUserWithEmail(_email, _password);
   }
 }
