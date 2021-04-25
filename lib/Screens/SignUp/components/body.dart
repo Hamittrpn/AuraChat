@@ -1,5 +1,4 @@
 import 'package:aura_chat/models/user_model.dart';
-import 'package:aura_chat/screens/Home/home_screen.dart';
 import 'package:aura_chat/screens/Login/login_screen.dart';
 import 'package:aura_chat/screens/SignUp/components/background.dart';
 import 'package:aura_chat/screens/SignUp/components/or_divider.dart';

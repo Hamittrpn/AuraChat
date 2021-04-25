@@ -1,4 +1,3 @@
-import 'package:aura_chat/models/user_model.dart';
 import 'package:aura_chat/screens/Login/components/background.dart';
 import 'package:aura_chat/screens/SignUp/signup_screen.dart';
 import 'package:aura_chat/components/already_have_an_account_check.dart';
@@ -81,7 +80,6 @@ class _BodyState extends State<Body> {
 
   _formSubmit(BuildContext context) async {
     final _userViewModel = Provider.of<UserViewModel>(context, listen: false);
-    AuraUser _loginUser =
-        await _userViewModel.signInWithEmail(_email, _password);
+    await _userViewModel.signInWithEmail(_email, _password);
   }
 }

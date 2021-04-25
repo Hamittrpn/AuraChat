@@ -2,6 +2,7 @@ import 'package:aura_chat/models/user_model.dart';
 import 'package:aura_chat/services/auth_base.dart';
 import 'package:aura_chat/services/fake_auth_service.dart';
 import 'package:aura_chat/services/firebase_auth_service.dart';
+import 'package:aura_chat/services/firestore_db_service.dart';
 import 'package:aura_chat/services/locator.dart';
 
 enum AppMode { DEBUG, RELEASE }
@@ -9,6 +10,7 @@ enum AppMode { DEBUG, RELEASE }
 class UserRepository implements AuthBase {
   FirebaseAuthService _firebaseAuthService = locator<FirebaseAuthService>();
   FakeAuthService _fakeAuthService = locator<FakeAuthService>();
+  FirestoreDbService _firestoreDbService = locator<FirestoreDbService>();
 
   AppMode appMode = AppMode.RELEASE;
 
@@ -62,7 +64,14 @@ class UserRepository implements AuthBase {
     if (appMode == AppMode.DEBUG) {
       return await _fakeAuthService.createUserWithEmail(email, password);
     } else {
-      return await _firebaseAuthService.createUserWithEmail(email, password);
+      AuraUser _user =
+          await _firebaseAuthService.createUserWithEmail(email, password);
+      bool result = await _firestoreDbService.saveUser(_user);
+      if (result) {
+        return _user;
+      } else {
+        return null;
+      }
     }
   }
 
