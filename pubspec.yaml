@@ -54,6 +54,7 @@ flutter:
   assets:
      - lib/assets/images/main_bottom.png
      - lib/assets/images/main_top.png
+     - lib/assets/images/profile_Image.png
      - lib/assets/images/login_bottom.png
      - lib/assets/images/signup_top.png
      - lib/assets/icons/chat.svg
@@ -62,6 +63,13 @@ flutter:
      - lib/assets/icons/login.svg
      - lib/assets/icons/signup.svg
      - lib/assets/icons/twitter.svg
+     - lib/assets/icons/camera_Icon.svg
+     - lib/assets/icons/user_Icon.svg
+     - lib/assets/icons/bell.svg
+     - lib/assets/icons/question_mark.svg
+     - lib/assets/icons/logout.svg
+     - lib/assets/icons/settings.svg
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

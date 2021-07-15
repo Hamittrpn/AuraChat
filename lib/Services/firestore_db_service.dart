@@ -7,6 +7,11 @@ class FirestoreDbService implements DBBase {
   @override
   Future<bool> saveUser(AuraUser user) async {
     await _firestore.collection("users").doc(user.userID).set(user.toMap());
+    DocumentSnapshot _readUser =
+        await FirebaseFirestore.instance.doc("users/${user.userID}").get();
+
+    Map _readUserInfoToMap = _readUser.data();
+    AuraUser _readUserObject = AuraUser.fromMap(_readUserInfoToMap);
     return true;
   }
 }

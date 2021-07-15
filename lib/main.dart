@@ -1,4 +1,6 @@
+import 'package:aura_chat/routes.dart';
 import 'package:aura_chat/screens/Welcome/landing_screen.dart';
+import 'package:aura_chat/screens/profile/profile_screen.dart';
 import 'package:aura_chat/services/locator.dart';
 import 'package:aura_chat/constants.dart';
 import 'package:aura_chat/validations/signup_validation.dart';
@@ -33,6 +35,8 @@ class MyApp extends StatelessWidget {
             primaryColor: kPrimaryColor,
             scaffoldBackgroundColor: Colors.white,
           ),
+          initialRoute: ProfileScreen.routeName,
+          routes: routes,
           home: LandingScreen()),
     );
   }

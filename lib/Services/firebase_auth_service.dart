@@ -48,7 +48,7 @@ class FirebaseAuthService implements AuthBase {
 
   AuraUser _userFromFirebase(User user) {
     if (user == null) return null;
-    return AuraUser(userID: user.uid);
+    return AuraUser(userID: user.uid, email: user.email);
   }
 
   @override
